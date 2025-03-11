@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap');
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 245, 245, 245;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 30, 30, 30;
+    --background-end-rgb: 15, 15, 15;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-start-rgb));
+}
+
+/* 明示的に背景色と文字色を設定 */
+.bg-white {
+  background-color: white;
+  color: #333;
+}
+
+.bg-gray-100 {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.bg-retro-blue {
+  background-color: #4F86C6;
+  color: white;
+}
+
+.bg-gray-800 {
+  background-color: #1f2937;
+  color: white;
+}
+
+@layer components {
+  .retro-button {
+    @apply bg-[#C0C0C0] text-retro-text px-4 py-2 border-2 border-t-white border-l-white border-b-gray-800 border-r-gray-800 hover:bg-gray-300 transition-colors;
+  }
+  
+  .quiz-card {
+    @apply bg-white p-6 rounded-lg shadow-lg border-2 border-retro-yellow;
+  }
+  
+  .retro-container {
+    @apply container mx-auto px-4;
+  }
+  
+  .retro-heading {
+    @apply font-display text-retro-red text-center;
+  }
+  
+  .retro-card {
+    @apply bg-white border-2 border-t-gray-800 border-l-gray-800 border-b-white border-r-white p-4 shadow-md;
+  }
+  
+  .retro-input {
+    @apply bg-white border-2 border-t-gray-800 border-l-gray-800 border-b-white border-r-white px-2 py-1;
+  }
+  
+  .retro-link {
+    @apply text-retro-link underline hover:text-retro-visited;
+  }
+  
+  .retro-marquee {
+    @apply bg-retro-yellow text-retro-text px-2 py-1 font-bold animate-blink;
+  }
+  
+  .retro-divider {
+    @apply h-[6px] my-4 relative overflow-hidden;
+    background: repeating-linear-gradient(
+      to right,
+      #FF0000 0%,
+      #FF7F00 10%,
+      #FFFF00 20%,
+      #00FF00 30%,
+      #0000FF 40%,
+      #4B0082 50%,
+      #8B00FF 60%,
+      #FF0000 70%,
+      #FF7F00 80%,
+      #FFFF00 90%,
+      #00FF00 100%
+    );
+    animation: rainbow-scroll 3s linear infinite;
+  }
+  
+  .retro-counter {
+    @apply text-xs bg-black text-white px-2 py-1 font-mono border border-white;
+  }
+  
+  .retro-under-construction {
+    @apply flex items-center justify-center p-2 bg-yellow-200 border border-yellow-500 text-black;
+  }
+  
+  .retro-under-construction::before {
+    content: "🚧";
+    margin-right: 0.5rem;
+  }
+  
+  .retro-under-construction::after {
+    content: "🚧";
+    margin-left: 0.5rem;
+  }
+  
+  .retro-blink {
+    animation: blink 1s step-end infinite;
+  }
+}
+
+@keyframes rainbow-scroll {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* 90年代風のスクロールバー */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: #c0c0c0;
+  border: 1px solid #a0a0a0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #808080;
+  border: 1px outset #ffffff;
+}
+
+/* 90年代風のテキスト選択 */
+::selection {
+  background-color: #000080;
+  color: #ffffff;
+}
+
+/* 90年代風のカーソル */
+html {
+  cursor: url('/images/cursor.cur'), auto;
+}
+
+/* 90年代風のテーブル */
+table.retro-table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 2px solid #808080;
+}
+
+table.retro-table th {
+  background-color: #000080;
+  color: white;
+  font-weight: bold;
+  padding: 6px;
+  border: 1px solid #c0c0c0;
+}
+
+table.retro-table td {
+  padding: 4px;
+  border: 1px solid #c0c0c0;
+}
+
+table.retro-table tr:nth-child(even) {
+  background-color: #f0f0f0;
+} 
