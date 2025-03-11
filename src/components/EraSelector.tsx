@@ -1,8 +1,8 @@
 import React from 'react';
-import { Era } from '@/lib/types';
+import { EraInfo } from '@/lib/types';
 
 interface EraSelectorProps {
-  eras: Era[];
+  eras: EraInfo[];
   selectedEra: string | null;
   onSelectEra: (eraId: string) => void;
 }

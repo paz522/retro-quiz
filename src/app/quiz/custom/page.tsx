@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import QuizCard from '@/components/QuizCard';
 import QuizProgress from '@/components/QuizProgress';
@@ -11,7 +11,8 @@ import { QuizState, Quiz, CategoryId, EraId } from '@/lib/types';
 // 初期ロード時の問題数
 const INITIAL_QUIZ_COUNT = 10;
 
-export default function CustomQuizPage() {
+// SearchParamsを使用するコンポーネント
+function CustomQuizContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   
@@ -219,5 +220,14 @@ export default function CustomQuizPage() {
         isGameOver={isGameOver}
       />
     </div>
+  );
+}
+
+// メインのページコンポーネント
+export default function CustomQuizPage() {
+  return (
+    <Suspense fallback={<div className="text-center py-12"><p className="text-xl">読み込み中...</p></div>}>
+      <CustomQuizContent />
+    </Suspense>
   );
 } 
