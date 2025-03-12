@@ -4,10 +4,6 @@ import type { NextRequest } from 'next/server.js'
 
 type TEntry = typeof import('../../../../../src/app/api/counter/route.js')
 
-type SegmentParams<T extends Object = any> = T extends Record<string, any>
-  ? { [K in keyof T]: T[K] extends string ? string | string[] | undefined : never }
-  : T
-
 // Check that the entry is a valid entry
 checkFields<Diff<{
   GET?: Function
@@ -29,7 +25,6 @@ checkFields<Diff<{
   
 }, TEntry, ''>>()
 
-type RouteContext = { params: Promise<SegmentParams> }
 // Check the prop type of the entry function
 if ('GET' in entry) {
   checkFields<
@@ -45,25 +40,11 @@ if ('GET' in entry) {
   >()
   checkFields<
     Diff<
-      ParamCheck<RouteContext>,
+      ParamCheck<PageParams>,
       {
         __tag__: 'GET'
         __param_position__: 'second'
         __param_type__: SecondArg<MaybeField<TEntry, 'GET'>>
-      },
-      'GET'
-    >
-  >()
-  
-  checkFields<
-    Diff<
-      {
-        __tag__: 'GET',
-        __return_type__: Response | void | never | Promise<Response | void | never>
-      },
-      {
-        __tag__: 'GET',
-        __return_type__: ReturnType<MaybeField<TEntry, 'GET'>>
       },
       'GET'
     >
@@ -84,25 +65,11 @@ if ('HEAD' in entry) {
   >()
   checkFields<
     Diff<
-      ParamCheck<RouteContext>,
+      ParamCheck<PageParams>,
       {
         __tag__: 'HEAD'
         __param_position__: 'second'
         __param_type__: SecondArg<MaybeField<TEntry, 'HEAD'>>
-      },
-      'HEAD'
-    >
-  >()
-  
-  checkFields<
-    Diff<
-      {
-        __tag__: 'HEAD',
-        __return_type__: Response | void | never | Promise<Response | void | never>
-      },
-      {
-        __tag__: 'HEAD',
-        __return_type__: ReturnType<MaybeField<TEntry, 'HEAD'>>
       },
       'HEAD'
     >
@@ -123,25 +90,11 @@ if ('OPTIONS' in entry) {
   >()
   checkFields<
     Diff<
-      ParamCheck<RouteContext>,
+      ParamCheck<PageParams>,
       {
         __tag__: 'OPTIONS'
         __param_position__: 'second'
         __param_type__: SecondArg<MaybeField<TEntry, 'OPTIONS'>>
-      },
-      'OPTIONS'
-    >
-  >()
-  
-  checkFields<
-    Diff<
-      {
-        __tag__: 'OPTIONS',
-        __return_type__: Response | void | never | Promise<Response | void | never>
-      },
-      {
-        __tag__: 'OPTIONS',
-        __return_type__: ReturnType<MaybeField<TEntry, 'OPTIONS'>>
       },
       'OPTIONS'
     >
@@ -162,25 +115,11 @@ if ('POST' in entry) {
   >()
   checkFields<
     Diff<
-      ParamCheck<RouteContext>,
+      ParamCheck<PageParams>,
       {
         __tag__: 'POST'
         __param_position__: 'second'
         __param_type__: SecondArg<MaybeField<TEntry, 'POST'>>
-      },
-      'POST'
-    >
-  >()
-  
-  checkFields<
-    Diff<
-      {
-        __tag__: 'POST',
-        __return_type__: Response | void | never | Promise<Response | void | never>
-      },
-      {
-        __tag__: 'POST',
-        __return_type__: ReturnType<MaybeField<TEntry, 'POST'>>
       },
       'POST'
     >
@@ -201,25 +140,11 @@ if ('PUT' in entry) {
   >()
   checkFields<
     Diff<
-      ParamCheck<RouteContext>,
+      ParamCheck<PageParams>,
       {
         __tag__: 'PUT'
         __param_position__: 'second'
         __param_type__: SecondArg<MaybeField<TEntry, 'PUT'>>
-      },
-      'PUT'
-    >
-  >()
-  
-  checkFields<
-    Diff<
-      {
-        __tag__: 'PUT',
-        __return_type__: Response | void | never | Promise<Response | void | never>
-      },
-      {
-        __tag__: 'PUT',
-        __return_type__: ReturnType<MaybeField<TEntry, 'PUT'>>
       },
       'PUT'
     >
@@ -240,25 +165,11 @@ if ('DELETE' in entry) {
   >()
   checkFields<
     Diff<
-      ParamCheck<RouteContext>,
+      ParamCheck<PageParams>,
       {
         __tag__: 'DELETE'
         __param_position__: 'second'
         __param_type__: SecondArg<MaybeField<TEntry, 'DELETE'>>
-      },
-      'DELETE'
-    >
-  >()
-  
-  checkFields<
-    Diff<
-      {
-        __tag__: 'DELETE',
-        __return_type__: Response | void | never | Promise<Response | void | never>
-      },
-      {
-        __tag__: 'DELETE',
-        __return_type__: ReturnType<MaybeField<TEntry, 'DELETE'>>
       },
       'DELETE'
     >
@@ -279,7 +190,7 @@ if ('PATCH' in entry) {
   >()
   checkFields<
     Diff<
-      ParamCheck<RouteContext>,
+      ParamCheck<PageParams>,
       {
         __tag__: 'PATCH'
         __param_position__: 'second'
@@ -288,36 +199,23 @@ if ('PATCH' in entry) {
       'PATCH'
     >
   >()
-  
-  checkFields<
-    Diff<
-      {
-        __tag__: 'PATCH',
-        __return_type__: Response | void | never | Promise<Response | void | never>
-      },
-      {
-        __tag__: 'PATCH',
-        __return_type__: ReturnType<MaybeField<TEntry, 'PATCH'>>
-      },
-      'PATCH'
-    >
-  >()
 }
 
 // Check the arguments and return type of the generateStaticParams function
 if ('generateStaticParams' in entry) {
-  checkFields<Diff<{ params: SegmentParams }, FirstArg<MaybeField<TEntry, 'generateStaticParams'>>, 'generateStaticParams'>>()
+  checkFields<Diff<{ params: PageParams }, FirstArg<MaybeField<TEntry, 'generateStaticParams'>>, 'generateStaticParams'>>()
   checkFields<Diff<{ __tag__: 'generateStaticParams', __return_type__: any[] | Promise<any[]> }, { __tag__: 'generateStaticParams', __return_type__: ReturnType<MaybeField<TEntry, 'generateStaticParams'>> }>>()
 }
 
+type PageParams = any
 export interface PageProps {
-  params?: Promise<SegmentParams>
-  searchParams?: Promise<any>
+  params?: any
+  searchParams?: any
 }
 export interface LayoutProps {
   children?: React.ReactNode
 
-  params?: Promise<SegmentParams>
+  params?: any
 }
 
 // =============

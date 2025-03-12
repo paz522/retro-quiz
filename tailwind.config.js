@@ -8,16 +8,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'retro-blue': '#0000FF',
-        'retro-red': '#FF0000',
-        'retro-yellow': '#FFFF00',
-        'retro-green': '#00FF00',
-        'retro-purple': '#FF00FF',
-        'retro-orange': '#FFA500',
-        'retro-bg': '#C0C0C0',
-        'retro-text': '#000080',
+        'retro-yellow': '#FFD700',
+        'retro-red': '#FF4444',
+        'retro-blue': '#4444FF',
+        'retro-green': '#44FF44',
+        'retro-text': '#333333',
         'retro-link': '#0000EE',
-        'retro-visited': '#551A8B'
+        'retro-visited': '#551A8B',
       },
       fontFamily: {
         'retro': ['MS PGothic', 'MS Gothic', 'sans-serif'],

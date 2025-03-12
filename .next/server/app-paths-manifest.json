@@ -1,6 +1,4 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/counter/route": "app/api/counter/route.js",
   "/page": "app/page.js",
-  "/quiz/random/page": "app/quiz/random/page.js"
+  "/api/counter/route": "app/api/counter/route.js"
 }
